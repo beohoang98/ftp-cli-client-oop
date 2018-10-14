@@ -16,6 +16,12 @@
     <Filter Include="Header Files\FTPCore">
       <UniqueIdentifier>{9aebcb17-9aca-40c6-b344-2a5cb42c9f50}</UniqueIdentifier>
     </Filter>
+    <Filter Include="TestClass">
+      <UniqueIdentifier>{8db780d9-3b4c-4791-9701-276e1d2208fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\FTPStatus">
+      <UniqueIdentifier>{1aab7f4e-dee0-4c6f-a049-6e853196f023}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -39,6 +45,9 @@
     <ClInclude Include="FTPCode.h">
       <Filter>Header Files\FTPCore</Filter>
     </ClInclude>
+    <ClInclude Include="FTPStatus.h">
+      <Filter>Header Files\FTPStatus</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -46,6 +55,12 @@
     </ClCompile>
     <ClCompile Include="FTPClient.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FTPCore.cpp">
+      <Filter>Header Files\FTPCore</Filter>
+    </ClCompile>
+    <ClCompile Include="Test01.h">
+      <Filter>TestClass</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "FTPClient.h"
+#include <afxsock.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -33,8 +34,13 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 		}
 		else
 		{
-			// TODO: code your application's behavior here.
-			app->start();
+			if (!AfxSocketInit()) {
+				nRetCode = 1;
+			}
+			else {
+				// TODO: code your application's behavior here.
+				app->start();
+			}
 		}
 	}
 	else
