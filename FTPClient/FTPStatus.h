@@ -22,9 +22,8 @@ public:
 
 		while (isNext == '-' && !ss.eof()) {
 			ss >> this->code;
-			ss >> isNext;
+			ss.get(isNext);
 			getline(ss, tmpMsg);
-			// ss.ignore(1);
 			this->msg += tmpMsg;
 		}
 	}

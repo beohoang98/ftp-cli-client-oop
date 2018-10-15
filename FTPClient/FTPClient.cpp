@@ -35,7 +35,7 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 		else
 		{
 			if (!AfxSocketInit()) {
-				nRetCode = 1;
+				return FALSE;
 			}
 			else {
 				// TODO: code your application's behavior here.

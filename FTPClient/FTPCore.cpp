@@ -37,24 +37,24 @@ void FTPCore::send(string cmd)
 
 
 void FTPCore::listenOnReturn() {
-	char buffer[BUFFER_LENGTH] = { 0 };
-	
-	char oneChar = 0;
-	int len = 0;
-	while (this->conn->Receive(&oneChar, 1) > 0) {
-		buffer[len++] = oneChar;
-		if (oneChar == '\n' || oneChar == '\0' || len == BUFFER_LENGTH - 1) break;
-		oneChar = 0;
-	}
+	while (true) {
+		if (this->isContinueListen) {
+			char buffer[BUFFER_LENGTH] = { 0 };
 
-	if (len > 0) this->triggerReturn(buffer);
+			char * oneChar = new char[1];
+			*oneChar = 0;
 
-	// re assign thread
-	if (this->isContinueListen) {
-		free(this->listenThread);
+			int len = 0;
+			while (this->conn->Receive(oneChar, 1) > 0) {
+				buffer[len++] = *oneChar;
+				if (*oneChar == '\n' || *oneChar == '\0' || len == BUFFER_LENGTH - 1) break;
+				*oneChar = 0;
+			}
 
-		this->listenThread = new thread(&FTPCore::listenOnReturn, this);
-		this->listenThread->join();
+			if (len > 0) this->triggerReturn(buffer);
+			memset(buffer, 0, BUFFER_LENGTH);
+			free(oneChar);
+		}
 	}
 }
 
@@ -67,7 +67,12 @@ void FTPCore::fetchReturn(const char * buffer)
 void FTPCore::startListen()
 {
 	this->isContinueListen = true;
-	this->listenOnReturn();
+
+	// re assign thread
+	if (this->isContinueListen) {
+		this->listenThread = new thread(&FTPCore::listenOnReturn, this);
+		this->listenThread->join();
+	}
 }
 
 void FTPCore::endListen()

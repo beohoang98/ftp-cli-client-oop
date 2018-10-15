@@ -14,7 +14,7 @@
 using namespace std;
 
 class FTPCore {
-private:
+protected:
 	CSocket * conn;
 
 	thread * listenThread;

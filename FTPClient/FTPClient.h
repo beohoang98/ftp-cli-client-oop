@@ -13,9 +13,8 @@ public:
 	void start() {
 		Test01 * test = new Test01(L"127.0.0.1");
 		test->startListen();
-
-		cin.get();
-		test;
+		
+		system("pause");
 	}
 
 	void end() {
